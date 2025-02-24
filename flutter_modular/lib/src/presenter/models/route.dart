@@ -22,6 +22,9 @@ class ParallelRoute<T> extends ModularRoute {
   /// Widget Builder that will be called when prompted in navigation.
   final ModularChild? child;
 
+  /// The route to be taken when the route is called.
+  final Route<T>? route;
+
   /// Transition performed when one page overlaps another.
   /// default is TransitionType.defaultTransition;
   final TransitionType? transition;
@@ -44,6 +47,7 @@ class ParallelRoute<T> extends ModularRoute {
 
   ParallelRoute({
     this.child,
+    this.route,
     required String name,
     this.popCallback,
     this.maintainState = true,

@@ -1,3 +1,5 @@
+import 'package:flutter/widgets.dart';
+
 import '../guards/route_guard.dart';
 import 'route.dart';
 
@@ -22,6 +24,39 @@ class ChildRoute<T> extends ParallelRoute<T> {
         ),
         super(
           name: name,
+          child: child,
+          maintainState: maintainState,
+          customTransition: customTransition,
+          children: children,
+          duration: duration,
+          transition: transition,
+          isFullscreenDialog: isFullscreenDialog,
+          middlewares: guards,
+        );
+}
+
+class ChildRootRoute<T> extends ParallelRoute<T> {
+  ChildRootRoute(
+    String name, {
+    ModularChild? child,
+    Route<T>? route,
+    CustomTransition? customTransition,
+    List<ParallelRoute> children = const [],
+    Duration? duration,
+    TransitionType? transition,
+    bool isFullscreenDialog = false,
+    bool maintainState = true,
+    List<RouteGuard> guards = const [],
+  })  : assert(name.startsWith('/'), 'The name must always start with a /'),
+        assert(
+            child != null || route != null, 'Child or route must be not null'),
+        assert(
+          children.where((e) => e.name == name).isEmpty,
+          'Don\'t use name "/" in route\'s children when parent be "/" too',
+        ),
+        super(
+          name: name,
+          route: route,
           child: child,
           maintainState: maintainState,
           customTransition: customTransition,

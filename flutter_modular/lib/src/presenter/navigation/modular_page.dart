@@ -30,6 +30,8 @@ class ModularPage<T> extends Page<T> {
 
   @override
   Route<T> createRoute(BuildContext context) {
+    if (route.route != null) return route.route! as Route<T>;
+
     late final Widget page;
     if (route.child != null) {
       page = route.child!(context);
