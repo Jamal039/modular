@@ -133,6 +133,7 @@ class ParallelRoute<T> extends ModularRoute {
   @override
   ParallelRoute<T> copyWith({
     ModularChild? child,
+    Route<T>? route,
     Module? module,
     TransitionType? transition,
     CustomTransition? customTransition,
@@ -150,6 +151,7 @@ class ParallelRoute<T> extends ModularRoute {
   }) {
     return ParallelRoute<T>(
       child: child ?? this.child,
+      route: route ?? this.route,
       transition: transition ?? this.transition,
       module: module ?? this.module,
       customTransition: customTransition ?? this.customTransition,
